@@ -1,0 +1,48 @@
+gridOUTPUT = np.zeros((len(raydirection), gridCOz.size, gridCOx.size, gridCOy.size))
+    if ('x' in raydirection):
+        xmesh = np.zeros(meshXYZ.shape)
+        xmesh[:, :, 0] = meshXYZ[:, :, 1]
+        xmesh[:, :, 1] = meshXYZ[:, :, 2]
+        xmesh[:, :, 2] = meshXYZ[:, :, 0]
+        print(np.shape(gridCOy))
+        print(np.shape(gridCOz))
+        print(np.shape(gridCOx))
+        print(np.shape(xmesh))
+        gridOUTPUT[countdirections, :, :, :] = np.transpose(VOXELISEinternal(gridCOy, gridCOz, gridCOx, xmesh), (2, 0, 1))
+        countdirections += 1
+
+        # np.transpose(VOXELISEinternal(gridCOy, gridCOz, gridCOx, xmesh), (2, 0, 1))
+    
+    
+        #xmesh[:, :, 0] = meshXYZ[:, :, 1]
+        #xmesh[:, :, 1] = meshXYZ[:, :, 2]
+        #xmesh[:, :, 2] = meshXYZ[:, :, 0]
+        print(np.shape(gridOUTPUT))
+    
+    if ('y' in raydirection):
+
+        ymesh = np.zeros(meshXYZ.shape)
+        ymesh[:, :, 0] = meshXYZ[:, :, 2]
+        ymesh[:, :, 1] = meshXYZ[:, :, 0]
+        ymesh[:, :, 2] = meshXYZ[:, :, 1]
+
+        
+
+        start1 = time.time()
+        #print("시작")
+
+        k= VOXELISEinternal(gridCOz, gridCOx, gridCOy, ymesh), (1, 2, 0)
+        #print("끝")
+        end1 = time.time()
+        print(np.shape(gridCOx))
+        print(np.shape(gridCOy))
+        #print("internal 시간은: ",end1-start1," 만큼 소요됨")
+        #print("시작")
+        start2 =time.time()
+        gridOUTPUT[countdirections, :, :, :] = np.transpose(VOXELISEinternal(gridCOz, gridCOx, gridCOy, ymesh), (1, 2, 0))
+        end2 = time.time()
+        #print("끝")
+        print(np.shape(gridOUTPUT))
+
+        # np.transpose(VOXELISEinternal(gridCOz, gridCOx, gridCOy, ymesh), (1, 2, 0))
+        #print("transpose 시간은: ",end2-start2," 만큼 소요됨")
