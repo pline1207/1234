@@ -46,3 +46,8 @@ gridOUTPUT = np.zeros((len(raydirection), gridCOz.size, gridCOx.size, gridCOy.si
 
         # np.transpose(VOXELISEinternal(gridCOz, gridCOx, gridCOy, ymesh), (1, 2, 0))
         #print("transpose 시간은: ",end2-start2," 만큼 소요됨")
+        #
+#
+#
+#
+#
